@@ -12,6 +12,7 @@ fun <T, A> performNetworkRequest(
     networkCall: suspend () -> BaseState<A>,
     saveCallResult: suspend (A) -> Unit
 ): LiveData<BaseState<T>> =
+
     liveData(Dispatchers.IO) {
         emit(BaseState.loading())
         val source = databaseQuery().map { BaseState.success(it) }
@@ -27,6 +28,6 @@ fun <T, A> performNetworkRequest(
             responseStatus.message?.let {
                 emit(BaseState.error(message = it, data = null))
             }
-            emitSource(source)
+           // emitSource(source)
         }
     }

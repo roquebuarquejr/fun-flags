@@ -10,13 +10,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 object NetworkModule {
 
-    @Singleton
     @Provides
     fun provideHttpLog(): HttpLoggingInterceptor {
         val log = HttpLoggingInterceptor()
@@ -24,9 +22,8 @@ object NetworkModule {
         return log
     }
 
-    @Singleton
     @Provides
-    fun provideOkHttpCliente(log: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(log: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor { chain ->
                     chain.proceed(chain.request().newBuilder().build())
@@ -37,7 +34,6 @@ object NetworkModule {
                 .build()
     }
 
-    @Singleton
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
@@ -47,7 +43,6 @@ object NetworkModule {
                 .build()
     }
 
-    @Singleton
     @Provides
     fun provideCountryService(retrofit: Retrofit): CountryService = retrofit.create(CountryService::class.java)
 

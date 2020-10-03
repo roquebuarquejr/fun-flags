@@ -25,13 +25,12 @@ class CountryListViewModel @ViewModelInject constructor(
     override val mutableState =
         savedStateHandle.getLiveData<BaseState<List<CountryDto>>>("CountryListViewModel.state")
 
-
-    private fun fetchAllUsers(): Flow<BaseState<List<CountryDto>>> {
+    private fun fetchAllCountries(): Flow<BaseState<List<CountryDto>>> {
         return repository.getAllCountries().asFlow()
     }
 
     override fun stateFlow(): Flow<BaseState<List<CountryDto>>> {
-        return fetchAllUsers()
+        return fetchAllCountries()
     }
 }
 
