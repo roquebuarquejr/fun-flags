@@ -39,6 +39,7 @@ dependencies {
     implementation commonDependencies.kotlin
     implementation commonDependencies.ktx
     implementation commonDependencies.appCompat
+    implementation commonDependencies.timber
 
     //Dagger - Hilt
     implementation commonDependencies.dagger
@@ -70,6 +71,15 @@ dependencies {
     //Glide
     implementation commonDependencies.glide
     kapt commonDependencies.glideCompiler
+
+    //Room
+    implementation commonDependencies.room
+    implementation commonDependencies.roomKtx
+    kapt commonDependencies.roomCompliler
+
+    //Navigation
+    implementation commonDependencies.navigation
+    implementation commonDependencies.navigationKtx
 
     //Test
     testImplementation commonTestDependencies.junit
