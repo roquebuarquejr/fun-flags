@@ -46,7 +46,7 @@ class CountryListFragment : Fragment() {
 
 
     private fun setupObserver() {
-        viewModel.state.observe(this) { state ->
+        viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state.status) {
                 BaseState.Status.SUCCESS -> {
                     load(false)

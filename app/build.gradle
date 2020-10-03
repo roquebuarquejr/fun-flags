@@ -77,6 +77,8 @@ dependencies {
     implementation commonDependencies.glide
     kapt commonDependencies.glideCompiler
 
+    implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+
     //Room
     implementation commonDependencies.room
     implementation commonDependencies.roomKtx
