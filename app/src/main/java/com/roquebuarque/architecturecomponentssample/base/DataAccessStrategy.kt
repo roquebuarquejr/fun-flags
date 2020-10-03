@@ -28,6 +28,5 @@ fun <T, A> performNetworkRequest(
             responseStatus.message?.let {
                 emit(BaseState.error(message = it, data = null))
             }
-           // emitSource(source)
         }
     }

@@ -10,7 +10,7 @@ import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 @Dao
 interface CountryDao {
 
-    @Query("SELECT * FROM countries")
+    @Query("SELECT * FROM countries ORDER BY name ASC")
     fun getAllCountries() : LiveData<List<CountryDto>>
 
     @Query("SELECT * FROM countries WHERE id = :id")

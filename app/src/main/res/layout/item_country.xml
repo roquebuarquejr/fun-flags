@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ctnMainCountryItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgCountryItem"
+        android:layout_width="@dimen/size_8"
+        android:layout_height="@dimen/size_6"
+        android:layout_margin="@dimen/size_1"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCountryNameItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_1"
+        android:textSize="@dimen/title_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgCountryItem"
+        app:layout_constraintTop_toTopOf="@+id/imgCountryItem"
+        tools:text="Brazil" />
+
+    <TextView
+        android:id="@+id/txtCapitalNameItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_1"
+        app:layout_constraintStart_toEndOf="@id/imgCountryItem"
+        app:layout_constraintTop_toBottomOf="@id/txtCountryNameItem"
+        tools:text="Brasilia" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
