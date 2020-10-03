@@ -37,6 +37,10 @@ class CountryListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupList()
         setupObserver()
+
+        countryListSwipeRefresh.setOnRefreshListener {
+            viewModel.refresh()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
