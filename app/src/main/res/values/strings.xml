@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ArchitectureComponentsSample</string>
     <string name="country_list_title">Countries</string>
+    <string name="search_country">Search country</string>
 </resources>

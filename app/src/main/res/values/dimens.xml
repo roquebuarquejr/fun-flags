@@ -9,7 +9,12 @@
     <dimen name="size_6">48dp</dimen>
     <dimen name="size_7">56dp</dimen>
     <dimen name="size_8">64dp</dimen>
-    <dimen name="title_size">16sp</dimen>
-    <dimen name="body_size">14sp</dimen>
+    <dimen name="size_25">200dp</dimen>
+
+    <dimen name="text_size_1">8sp</dimen>
+    <dimen name="text_size_1o5">12sp</dimen>
+    <dimen name="text_size_2">16sp</dimen>
+    <dimen name="text_size_3">24sp</dimen>
+    <dimen name="text_size_4">32sp</dimen>
 
 </resources>

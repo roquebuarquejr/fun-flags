@@ -78,6 +78,7 @@ dependencies {
     kapt commonDependencies.glideCompiler
 
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Room
     implementation commonDependencies.room

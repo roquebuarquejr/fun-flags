@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgCountryItem"
-        android:layout_width="@dimen/size_4"
-        android:layout_height="@dimen/size_3"
+        android:layout_width="@dimen/size_5"
+        android:layout_height="@dimen/size_5"
         android:layout_margin="@dimen/size_1"
         android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_2"
-        android:textSize="@dimen/title_size"
+        android:textSize="@dimen/text_size_2"
+        android:layout_marginTop="@dimen/size_1"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imgCountryItem"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_2"
         android:layout_marginBottom="@dimen/size_2"
-        android:textSize="@dimen/body_size"
+        android:textSize="@dimen/text_size_1o5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/imgCountryItem"
         app:layout_constraintTop_toBottomOf="@id/txtCountryNameItem"
