@@ -1,10 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 
     defaultConfig {
         applicationId "com.roquebuarque.architecturecomponentssample"
@@ -26,12 +34,52 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation commonDependencies.constraintLayout
+
+    implementation commonDependencies.kotlin
+    implementation commonDependencies.ktx
+    implementation commonDependencies.appCompat
+
+    //Dagger - Hilt
+    implementation commonDependencies.dagger
+    kapt commonDependencies.daggerCompile
+    implementation commonDependencies.hilt
+    kapt commonDependencies.hiltdaggerCompile
+    kapt commonDependencies.hiltCompiler
+    implementation commonDependencies.hiltViewModel
+
+    //Network
+    implementation commonDependencies.gson
+    implementation commonDependencies.okhttp
+    implementation commonDependencies.log
+    implementation commonDependencies.retrofit
+
+    //Lifecycle
+    implementation commonDependencies.viewModel
+    implementation commonDependencies.livedata
+    implementation commonDependencies.lifeCycleCommon
+    implementation commonDependencies.lifeCycleExt
+    implementation commonDependencies.fragmentKtx
+
+
+    //Kotlin Coroutines
+    implementation commonDependencies.coroutinesCore
+    implementation commonDependencies.coroutinesAndroid
+    implementation commonDependencies.coroutinesTest
+
+    //Glide
+    implementation commonDependencies.glide
+    kapt commonDependencies.glideCompiler
+
+    //Test
+    testImplementation commonTestDependencies.junit
+    androidTestImplementation commonTestDependencies.androidxJunit
+    androidTestImplementation commonTestDependencies.espresso
+    testImplementation commonTestDependencies.mockitoCore
+    testImplementation commonTestDependencies.mockitoInLine
+    testImplementation commonTestDependencies.truth
+    androidTestImplementation commonTestDependencies.mockito
+    testImplementation commonTestDependencies.nhaarman
+    testImplementation commonTestDependencies.archTestCode
 
 }

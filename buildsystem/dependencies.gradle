@@ -1,0 +1,68 @@
+ext {
+    //Libraries versions
+    final retrofitVersion = '2.9.0'
+    final okHttpVersion = '4.9.0'
+    final daggerVersion = '2.29.1'
+    final hiltVersion = '2.28-alpha'
+    final lifecycle_version = "2.2.0"
+    final coroutines_android_version = '1.3.9'
+    final glide_version = '4.11.0'
+
+
+    commonDependencies = [
+
+            //Kotlin
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            ktx              : 'androidx.core:core-ktx:1.3.1',
+            appCompat        : 'androidx.appcompat:appcompat:1.2.0',
+
+            //RETROFIT
+            retrofit         : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            gson             : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+
+            //OKHTTP
+            okhttp           : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            log              : "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+
+            //DAGGER
+            dagger           : "com.google.dagger:dagger:$daggerVersion",
+            daggerCompile    : "com.google.dagger:dagger-compiler:$daggerVersion",
+
+            hilt             : "com.google.dagger:hilt-android:$hiltVersion",
+            hiltdaggerCompile: "com.google.dagger:hilt-android-compiler:$hiltVersion",
+
+            hiltCompiler     : "androidx.hilt:hilt-compiler:1.0.0-alpha02",
+            hiltViewModel    : "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02",
+
+            viewModel        : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            livedata         : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            lifeCycleCommon  : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            lifeCycleExt     : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+
+            coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version",
+            coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version",
+            coroutinesTest   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version",
+
+            glide            : "com.github.bumptech.glide:glide:$glide_version",
+            glideCompiler    : "com.github.bumptech.glide:compiler:$glide_version",
+
+            fragmentKtx : "androidx.fragment:fragment-ktx:1.2.5",
+            constraintLayout : "androidx.constraintlayout:constraintlayout:2.0.1"
+
+
+    ]
+
+    commonTestDependencies = [
+            junit        : 'junit:junit:4.13',
+            androidxJunit: 'androidx.test.ext:junit:1.1.2',
+            espresso     : 'androidx.test.espresso:espresso-core:3.3.0',
+            mockitoCore  : 'org.mockito:mockito-core:3.5.11',
+            mockitoInLine: 'org.mockito:mockito-inline:3.2.4',
+            truth        : 'com.google.truth:truth:1.0.1',
+            mockito      : 'org.mockito:mockito-android:2.24.5',
+            nhaarman     : 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0',
+            archTestCode : 'androidx.arch.core:core-testing:2.1.0'
+
+    ]
+
+}
