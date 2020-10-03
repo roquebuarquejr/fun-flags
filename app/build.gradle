@@ -5,8 +5,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    def androidVersions = rootProject.ext.android
+    compileSdkVersion androidVersions.compileSdkVersion
+    buildToolsVersion androidVersions.buildToolsVersion
 
     packagingOptions {
         exclude 'META-INF/ASL2.0'
@@ -15,11 +16,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.roquebuarque.architecturecomponentssample"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId androidVersions.applicationId
+        minSdkVersion androidVersions.minSdkVersion
+        targetSdkVersion androidVersions.targetSdkVersion
+        versionCode androidVersions.versionCode
+        versionName androidVersions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
