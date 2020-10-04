@@ -1,6 +1,11 @@
 package com.roquebuarque.architecturecomponentssample.base
 
-data class BaseState<out T>(val status: Status, val data: T?, val message: String?) {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
+
+@Parcelize
+data class BaseState<out T>(val status: Status, val data: @RawValue T?, val message: String?): Parcelable {
 
     enum class Status {
         SUCCESS,
