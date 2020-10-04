@@ -28,15 +28,19 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
-        setupObserver()
 
         countryListSwipeRefresh.setOnRefreshListener {
             viewModel.refresh()
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupObserver()
+    }
+
     private fun setupObserver() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
+        viewModel.state.observe(this) { state ->
             when (state.status) {
                 BaseState.Status.SUCCESS -> {
                     load(false)

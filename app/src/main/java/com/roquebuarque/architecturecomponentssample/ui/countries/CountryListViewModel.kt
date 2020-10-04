@@ -23,11 +23,15 @@ import kotlinx.coroutines.launch
 @FragmentScoped
 class CountryListViewModel @ViewModelInject constructor(
     private val repository: CountryRepository,
-    @Assisted savedStateHandle: SavedStateHandle
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : StateViewModel<BaseState<List<CountryDto>>>() {
 
+    companion object {
+        private const val STATE_KEY = "CountryListViewModel.state"
+    }
+
     override val mutableState =
-        savedStateHandle.getLiveData<BaseState<List<CountryDto>>>("CountryListViewModel.state")
+        savedStateHandle.getLiveData<BaseState<List<CountryDto>>>(STATE_KEY)
 
     private val shouldRefreshAllUsers = BroadcastChannel<Unit>(1)
 
@@ -44,7 +48,12 @@ class CountryListViewModel @ViewModelInject constructor(
     }
 
     private fun fetchAllCountries(): Flow<BaseState<List<CountryDto>>> {
-        return repository.getAllCountries().asFlow()
+        return repository
+            .getAllCountries()
+            .asFlow()
+            .onEach {
+                savedStateHandle.set(STATE_KEY, it)
+            }
     }
 
     override fun stateFlow(): Flow<BaseState<List<CountryDto>>> {

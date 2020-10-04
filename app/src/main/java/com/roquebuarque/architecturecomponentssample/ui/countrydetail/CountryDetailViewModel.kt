@@ -21,11 +21,15 @@ import kotlinx.coroutines.launch
 @FragmentScoped
 class CountryDetailViewModel @ViewModelInject constructor(
     private val local: CountryDao,
-    @Assisted savedStateHandle: SavedStateHandle
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : StateViewModel<CountryDto>() {
 
+    companion object {
+        private const val STATE_KEY = "CountryDetailViewModel.state"
+    }
+
     override val mutableState =
-        savedStateHandle.getLiveData<CountryDto>("CountryDetailViewModel.state")
+        savedStateHandle.getLiveData<CountryDto>(STATE_KEY)
 
     private val idBroadCastChannel = BroadcastChannel<Int>(1)
 
@@ -42,6 +46,9 @@ class CountryDetailViewModel @ViewModelInject constructor(
                 local
                     .getCountry(it)
                     .asFlow()
+                    .onEach { data ->
+                        savedStateHandle.set(STATE_KEY, data)
+                    }
             }
     }
 

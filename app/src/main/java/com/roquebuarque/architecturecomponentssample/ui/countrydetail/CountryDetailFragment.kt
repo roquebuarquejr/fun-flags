@@ -20,9 +20,9 @@ import kotlinx.coroutines.FlowPreview
 class CountryDetailFragment : Fragment(R.layout.fragment_country_detail) {
 
     private val viewModel: CountryDetailViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObserver()
         getArgumentsFromPrevFragment()
     }
 
@@ -32,8 +32,13 @@ class CountryDetailFragment : Fragment(R.layout.fragment_country_detail) {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupObserver()
+    }
+
     private fun setupObserver() {
-        viewModel.state.observe(viewLifecycleOwner) { country ->
+        viewModel.state.observe(this) { country ->
             bindCountry(country)
         }
     }

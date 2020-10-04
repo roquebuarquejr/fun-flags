@@ -16,7 +16,6 @@ abstract class StateViewModel<State> : ViewModel() {
             return mutableState
         }
 
-
     protected abstract val mutableState: MutableLiveData<State>
 
     protected abstract fun stateFlow(): Flow<State>
