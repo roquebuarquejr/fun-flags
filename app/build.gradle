@@ -100,4 +100,6 @@ dependencies {
     testImplementation commonTestDependencies.nhaarman
     testImplementation commonTestDependencies.archTestCode
 
+    androidTestImplementation("androidx.fragment:fragment-testing:1.2.5")
+
 }
