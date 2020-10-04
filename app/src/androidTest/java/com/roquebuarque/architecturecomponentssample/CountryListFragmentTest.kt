@@ -10,6 +10,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.roquebuarque.architecturecomponentssample.ui.HostActivity
 import com.roquebuarque.architecturecomponentssample.ui.countries.CountryListFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,30 +19,12 @@ import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.Matchers.allOf
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
 
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class CountryListFragmentTest {
-
-
-    @Test
-    fun test() {
-        // Create a mock NavController
-        val mockNavController = mock(NavController::class.java)
-
-        // Create a graphical FragmentScenario for the TitleScreen
-        val titleScenario = launchFragmentInContainer<CountryListFragment>()
-
-        // Set the NavController property on the fragment
-        titleScenario.onFragment { fragment ->
-            Navigation.setViewNavController(fragment.requireView(), mockNavController)
-        }
-
-        onView(withId(R.id.edtSearchCountry)).check(matches(isDisplayed()))
-    }
 
     @Test
     fun testActivityInitialState() {
