@@ -11,6 +11,7 @@
         android:layout_width="@dimen/size_5"
         android:layout_height="@dimen/size_5"
         android:layout_margin="@dimen/size_1"
+        tools:src="@drawable/ic_brazil"
         android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

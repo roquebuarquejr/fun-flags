@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/countryListFragment">
 
     <fragment
         android:id="@+id/countryListFragment"
         android:name="com.roquebuarque.architecturecomponentssample.ui.countries.CountryListFragment"
-        android:label="CountryListFragment" >
+        android:label="@string/title_country_list">
 
+        <action
+            android:id="@+id/presentCountryDetail"
+            app:destination="@id/countryDetail"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/countryDetail"
+        android:name="com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment"
+        android:label="@string/title_country_detail" />
 
 </navigation>

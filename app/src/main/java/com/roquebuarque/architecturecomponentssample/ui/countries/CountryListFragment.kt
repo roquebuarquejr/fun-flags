@@ -2,11 +2,14 @@ package com.roquebuarque.architecturecomponentssample.ui.countries
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.roquebuarque.architecturecomponentssample.R
 import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_country_list.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,12 +33,6 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
             viewModel.refresh()
         }
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        activity?.title = getString(R.string.country_list_title)
-    }
-
 
     private fun setupObserver() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -65,6 +62,9 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
     }
 
     private fun countryListClicked(countryDto: CountryDto) {
-        TODO("Not yet implemented")
+        findNavController().navigate(
+            R.id.presentCountryDetail,
+            bundleOf(CountryDetailFragment.COUNTRY_ID_EXTRA to countryDto.id)
+        )
     }
 }

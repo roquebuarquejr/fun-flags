@@ -9,6 +9,7 @@
     <dimen name="size_6">48dp</dimen>
     <dimen name="size_7">56dp</dimen>
     <dimen name="size_8">64dp</dimen>
+    <dimen name="size_20">160dp</dimen>
     <dimen name="size_25">200dp</dimen>
 
     <dimen name="text_size_1">8sp</dimen>

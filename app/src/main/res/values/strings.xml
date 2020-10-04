@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Fun Flag</string>
-    <string name="country_list_title">Countries</string>
+    <string name="title_country_list">Countries</string>
+    <string name="title_country_detail">Country Detail</string>
     <string name="search_country">Search country</string>
 </resources>
