@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui
+package com.roquebuarque.architecturecomponentssample.ui.countries
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -10,15 +10,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import com.roquebuarque.architecturecomponentssample.R
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 import kotlinx.android.synthetic.main.item_country.view.*
-import timber.log.Timber
-import java.net.URL
 
 class CountryListAdapter(private val listener: ((CountryDto) -> Unit)) : ListAdapter<CountryDto, CountryListAdapter.ViewHolder>(
         CountryListAdapter

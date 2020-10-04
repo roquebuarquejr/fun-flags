@@ -1,11 +1,7 @@
-package com.roquebuarque.architecturecomponentssample.ui
+package com.roquebuarque.architecturecomponentssample.ui.countries
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.roquebuarque.architecturecomponentssample.R
@@ -20,18 +16,10 @@ import timber.log.Timber
 @ExperimentalCoroutinesApi
 @FlowPreview
 @AndroidEntryPoint
-class CountryListFragment : Fragment() {
+class CountryListFragment : Fragment(R.layout.fragment_country_list) {
 
     private val viewModel: CountryListViewModel by viewModels()
     private val adapter: CountryListAdapter by lazy { CountryListAdapter(::countryListClicked) }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_country_list, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

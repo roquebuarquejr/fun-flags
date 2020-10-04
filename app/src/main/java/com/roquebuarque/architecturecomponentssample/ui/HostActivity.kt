@@ -1,7 +1,8 @@
-package com.roquebuarque.architecturecomponentssample
+package com.roquebuarque.architecturecomponentssample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.roquebuarque.architecturecomponentssample.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

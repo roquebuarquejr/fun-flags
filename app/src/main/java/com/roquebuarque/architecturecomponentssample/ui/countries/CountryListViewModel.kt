@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui
+package com.roquebuarque.architecturecomponentssample.ui.countries
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject

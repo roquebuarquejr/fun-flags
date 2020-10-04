@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/countryListFragment"
-        android:name="com.roquebuarque.architecturecomponentssample.ui.CountryListFragment"
+        android:name="com.roquebuarque.architecturecomponentssample.ui.countries.CountryListFragment"
         android:label="CountryListFragment" >
 
     </fragment>
