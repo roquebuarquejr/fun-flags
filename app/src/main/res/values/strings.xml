@@ -3,4 +3,9 @@
     <string name="title_country_list">Countries</string>
     <string name="title_country_detail">Country Detail</string>
     <string name="search_country">Search country</string>
+
+    <string name="capital">Capital: %1$s</string>
+    <string name="region">Region: %1$s</string>
+    <string name="sub_region">Sub Region: %1$s</string>
+    <string name="population">Population: %1$s</string>
 </resources>

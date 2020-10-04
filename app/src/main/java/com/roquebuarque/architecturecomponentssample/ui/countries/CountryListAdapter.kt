@@ -25,17 +25,17 @@ class CountryListAdapter(private val listener: ((CountryDto) -> Unit)) : ListAda
         private val image: ImageView = view.imgCountryItem
         private val ctnUserList: ConstraintLayout = view.ctnMainCountryItem
 
-        fun onBind(userDto: CountryDto, listener: ((CountryDto) -> Unit)) {
-            name.text = userDto.name
-            capital.text = userDto.capital
+        fun onBind(countryDto: CountryDto, listener: ((CountryDto) -> Unit)) {
+            name.text = countryDto.name
+            capital.text = countryDto.capital
 
             GlideToVectorYou
                 .init()
                 .with(image.context)
-                .load(Uri.parse(userDto.flag), image)
+                .load(Uri.parse(countryDto.flag), image)
 
             ctnUserList.setOnClickListener {
-                listener.invoke(userDto)
+                listener.invoke(countryDto)
             }
         }
     }

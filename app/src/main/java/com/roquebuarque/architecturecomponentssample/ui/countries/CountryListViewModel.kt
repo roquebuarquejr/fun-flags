@@ -10,6 +10,7 @@ import com.roquebuarque.architecturecomponentssample.base.StateViewModel
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 import com.roquebuarque.architecturecomponentssample.data.repository.CountryRepository
 import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BroadcastChannel
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-@ActivityScoped
+@FragmentScoped
 class CountryListViewModel @ViewModelInject constructor(
     private val repository: CountryRepository,
     @Assisted savedStateHandle: SavedStateHandle

@@ -17,5 +17,9 @@ data class CountryDto(
     val id: Int,
     val name: String,
     val capital: String,
+    val region: String,
+    @SerializedName("subregion")
+    val subRegion: String,
+    val population: Int,
     val flag: String
 ): Parcelable
