@@ -9,7 +9,6 @@ import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.base.StateViewModel
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 import com.roquebuarque.architecturecomponentssample.data.repository.CountryRepository
-import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -33,19 +32,36 @@ class CountryListViewModel @ViewModelInject constructor(
     override val mutableState =
         savedStateHandle.getLiveData<BaseState<List<CountryDto>>>(STATE_KEY)
 
-    private val shouldRefreshAllUsers = BroadcastChannel<Unit>(1)
+    private val actionBroadcastChannel = BroadcastChannel<CountryListIntent>(1)
 
-    fun refresh() {
+    /**
+     * Trigger user intent actions
+     */
+    fun intent(intent: CountryListIntent) {
         viewModelScope.launch {
-            shouldRefreshAllUsers.send(Unit)
+            actionBroadcastChannel.send(intent)
         }
     }
 
-    private fun refreshAllUsers(): Flow<BaseState<List<CountryDto>>> {
-        return shouldRefreshAllUsers
+    private val actions = actionBroadcastChannel
+        .asFlow()
+        .flatMapLatest {
+            when (it) {
+                is CountryListIntent.Refresh -> fetchAllCountries()
+                is CountryListIntent.Search -> searchCountry(it.query)
+            }
+
+        }
+
+    private fun searchCountry(name: String): Flow<BaseState<List<CountryDto>>> {
+        return repository
+            .getCountryByName(name)
             .asFlow()
-            .flatMapLatest { fetchAllCountries() }
+            .onEach {
+                savedStateHandle.set(STATE_KEY, it)
+            }
     }
+
 
     private fun fetchAllCountries(): Flow<BaseState<List<CountryDto>>> {
         return repository
@@ -57,7 +73,23 @@ class CountryListViewModel @ViewModelInject constructor(
     }
 
     override fun stateFlow(): Flow<BaseState<List<CountryDto>>> {
-        return merge(refreshAllUsers(), fetchAllCountries())
+        return merge(actions, fetchAllCountries())
     }
+}
+
+/**
+ * Handle all user interactions for [CountryListFragment]
+ */
+sealed class CountryListIntent {
+
+    /**
+     * When search for specific country
+     */
+    data class Search(val query: String) : CountryListIntent()
+
+    /**
+     * When swipe refresh trigger
+     */
+    object Refresh : CountryListIntent()
 }
 

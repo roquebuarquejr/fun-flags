@@ -3,6 +3,7 @@ package com.roquebuarque.architecturecomponentssample.ui.countries
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,9 +29,22 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
 
-        countryListSwipeRefresh.setOnRefreshListener {
-            viewModel.refresh()
+        edtSearchCountry.doAfterTextChanged {
+            if (it.toString().isEmpty()) {
+                edtSearchCountry.clearFocus()
+                intent(CountryListIntent.Refresh)
+            } else {
+                intent(CountryListIntent.Search(it.toString()))
+            }
         }
+
+        countryListSwipeRefresh.setOnRefreshListener {
+            intent(CountryListIntent.Refresh)
+        }
+    }
+
+    private fun intent(intent: CountryListIntent) {
+        viewModel.intent(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +65,6 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
                 }
                 BaseState.Status.LOADING -> {
                     load(true)
-
                 }
             }
         }

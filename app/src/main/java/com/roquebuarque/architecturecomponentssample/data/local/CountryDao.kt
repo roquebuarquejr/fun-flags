@@ -16,6 +16,9 @@ interface CountryDao {
     @Query("SELECT * FROM countries WHERE name = :name")
     fun getCountry(name: String): LiveData<CountryDto>
 
+    @Query("SELECT * FROM countries WHERE name LIKE '%' || :name || '%' ORDER BY name ASC")
+    fun getCountries(name: String):  LiveData<List<CountryDto>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(countries: List<CountryDto>)
 
