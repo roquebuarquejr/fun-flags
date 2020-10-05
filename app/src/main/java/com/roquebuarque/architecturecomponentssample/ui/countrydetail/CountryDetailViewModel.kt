@@ -31,16 +31,16 @@ class CountryDetailViewModel @ViewModelInject constructor(
     override val mutableState =
         savedStateHandle.getLiveData<CountryDto>(STATE_KEY)
 
-    private val idBroadCastChannel = BroadcastChannel<Int>(1)
+    private val nameBroadCastChannel = BroadcastChannel<String>(1)
 
-    fun start(id: Int) {
+    fun start(name: String) {
         viewModelScope.launch {
-            idBroadCastChannel.send(id)
+            nameBroadCastChannel.send(name)
         }
     }
 
     private fun fetchCountryFromLocal(): Flow<CountryDto> {
-        return idBroadCastChannel
+        return nameBroadCastChannel
             .asFlow()
             .flatMapLatest {
                 local

@@ -27,7 +27,7 @@ class CountryDetailFragment : Fragment(R.layout.fragment_country_detail) {
     }
 
     private fun getArgumentsFromPrevFragment() {
-        arguments?.getInt(COUNTRY_ID_EXTRA)?.let {
+        arguments?.getString(COUNTRY_NAME_EXTRA)?.let {
             viewModel.start(it)
         }
     }
@@ -59,7 +59,7 @@ class CountryDetailFragment : Fragment(R.layout.fragment_country_detail) {
 
 
     companion object {
-        const val COUNTRY_ID_EXTRA = "COUNTRY_ID_EXTRA"
+        const val COUNTRY_NAME_EXTRA = "COUNTRY_NAME_EXTRA"
     }
 
 }

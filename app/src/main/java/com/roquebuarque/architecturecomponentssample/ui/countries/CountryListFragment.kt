@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.roquebuarque.architecturecomponentssample.R
 import com.roquebuarque.architecturecomponentssample.base.BaseState
@@ -69,7 +68,7 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
     private fun countryListClicked(countryDto: CountryDto) {
         findNavController().navigate(
             R.id.presentCountryDetail,
-            bundleOf(CountryDetailFragment.COUNTRY_ID_EXTRA to countryDto.id)
+            bundleOf(CountryDetailFragment.COUNTRY_NAME_EXTRA to countryDto.name)
         )
     }
 }

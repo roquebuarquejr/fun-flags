@@ -13,8 +13,8 @@ interface CountryDao {
     @Query("SELECT * FROM countries ORDER BY name ASC")
     fun getAllCountries() : LiveData<List<CountryDto>>
 
-    @Query("SELECT * FROM countries WHERE id = :id")
-    fun getCountry(id: Int): LiveData<CountryDto>
+    @Query("SELECT * FROM countries WHERE name = :name")
+    fun getCountry(name: String): LiveData<CountryDto>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(countries: List<CountryDto>)
