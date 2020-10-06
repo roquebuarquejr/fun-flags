@@ -3,6 +3,7 @@ package com.roquebuarque.architecturecomponentssample.ui.countries
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import com.roquebuarque.architecturecomponentssample.R
 import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 import com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment
+import com.roquebuarque.architecturecomponentssample.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_country_list.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,12 +32,17 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
         setupList()
 
         edtSearchCountry.doAfterTextChanged {
-            if (it.toString().isEmpty()) {
-                edtSearchCountry.clearFocus()
-                intent(CountryListIntent.Refresh)
-            } else {
-                intent(CountryListIntent.Search(it.toString()))
-            }
+            if (it.toString().isNotEmpty())
+                imgCleanSearchCountryList.isVisible = true
+            intent(CountryListIntent.Search(it.toString()))
+        }
+
+        imgCleanSearchCountryList.setOnClickListener {
+            edtSearchCountry.setText("")
+            edtSearchCountry.clearFocus()
+            hideKeyboard()
+            intent(CountryListIntent.CleanSearch)
+            imgCleanSearchCountryList.isVisible = false
         }
 
         countryListSwipeRefresh.setOnRefreshListener {

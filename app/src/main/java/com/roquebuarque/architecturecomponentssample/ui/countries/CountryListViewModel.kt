@@ -12,7 +12,7 @@ import com.roquebuarque.architecturecomponentssample.data.repository.CountryRepo
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -32,7 +32,7 @@ class CountryListViewModel @ViewModelInject constructor(
     override val mutableState =
         savedStateHandle.getLiveData<BaseState<List<CountryDto>>>(STATE_KEY)
 
-    private val actionBroadcastChannel = BroadcastChannel<CountryListIntent>(1)
+    private val actionBroadcastChannel = ConflatedBroadcastChannel<CountryListIntent>()
 
     /**
      * Trigger user intent actions
@@ -49,17 +49,17 @@ class CountryListViewModel @ViewModelInject constructor(
             when (it) {
                 is CountryListIntent.Refresh -> fetchAllCountries()
                 is CountryListIntent.Search -> searchCountry(it.query)
+                CountryListIntent.CleanSearch -> clearSearch()
             }
-
         }
+
+    private fun clearSearch(): Flow<BaseState<List<CountryDto>>> = fetchAllCountries()
+
 
     private fun searchCountry(name: String): Flow<BaseState<List<CountryDto>>> {
         return repository
             .getCountryByName(name)
             .asFlow()
-            .onEach {
-                savedStateHandle.set(STATE_KEY, it)
-            }
     }
 
 
@@ -67,14 +67,15 @@ class CountryListViewModel @ViewModelInject constructor(
         return repository
             .getAllCountries()
             .asFlow()
+    }
+
+    override fun stateFlow(): Flow<BaseState<List<CountryDto>>> {
+        return merge(actions, fetchAllCountries())
             .onEach {
                 savedStateHandle.set(STATE_KEY, it)
             }
     }
 
-    override fun stateFlow(): Flow<BaseState<List<CountryDto>>> {
-        return merge(actions, fetchAllCountries())
-    }
 }
 
 /**
@@ -91,5 +92,11 @@ sealed class CountryListIntent {
      * When swipe refresh trigger
      */
     object Refresh : CountryListIntent()
+
+    /**
+     * When edit text string is empty
+     */
+    object CleanSearch : CountryListIntent()
+
 }
 
