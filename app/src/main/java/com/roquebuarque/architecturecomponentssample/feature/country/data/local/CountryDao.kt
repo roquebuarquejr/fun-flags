@@ -1,11 +1,11 @@
-package com.roquebuarque.architecturecomponentssample.data.local
+package com.roquebuarque.architecturecomponentssample.feature.country.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
 
 @Dao
 interface CountryDao {

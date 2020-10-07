@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui.countries
+package com.roquebuarque.architecturecomponentssample.feature.country.presentation
 
 import android.net.Uri
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.roquebuarque.architecturecomponentssample.R
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
 import kotlinx.android.synthetic.main.item_country.view.*
 
 class CountryListAdapter(private val listener: ((CountryDto) -> Unit)) : ListAdapter<CountryDto, CountryListAdapter.ViewHolder>(

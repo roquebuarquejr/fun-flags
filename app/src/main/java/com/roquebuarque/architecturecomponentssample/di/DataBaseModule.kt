@@ -1,7 +1,7 @@
 package com.roquebuarque.architecturecomponentssample.di
 
 import android.content.Context
-import com.roquebuarque.architecturecomponentssample.data.local.AppDatabase
+import com.roquebuarque.architecturecomponentssample.base.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
 package com.roquebuarque.architecturecomponentssample.di
 
-import com.roquebuarque.architecturecomponentssample.data.remote.CountryService
+import com.roquebuarque.architecturecomponentssample.feature.country.data.remote.CountryService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

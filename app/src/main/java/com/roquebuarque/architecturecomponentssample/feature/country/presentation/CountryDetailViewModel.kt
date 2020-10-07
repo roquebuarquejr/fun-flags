@@ -1,19 +1,21 @@
-package com.roquebuarque.architecturecomponentssample.ui.countrydetail
+package com.roquebuarque.architecturecomponentssample.feature.country.presentation
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.base.StateViewModel
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
-import com.roquebuarque.architecturecomponentssample.data.local.CountryDao
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.local.CountryDao
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @FlowPreview

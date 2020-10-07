@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/countryListFragment"
-        android:name="com.roquebuarque.architecturecomponentssample.ui.countries.CountryListFragment"
+        android:name="com.roquebuarque.architecturecomponentssample.feature.country.presentation.CountryListFragment"
         android:label="@string/title_country_list">
 
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/countryDetail"
-        android:name="com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment"
+        android:name="com.roquebuarque.architecturecomponentssample.feature.country.presentation.CountryDetailFragment"
         android:label="@string/title_country_detail" />
 
 </navigation>

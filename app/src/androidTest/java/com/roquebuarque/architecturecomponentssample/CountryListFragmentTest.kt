@@ -1,18 +1,12 @@
 package com.roquebuarque.architecturecomponentssample
 
 import android.widget.TextView
-import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.roquebuarque.architecturecomponentssample.ui.HostActivity
-import com.roquebuarque.architecturecomponentssample.ui.countries.CountryListFragment
+import com.roquebuarque.architecturecomponentssample.feature.HostActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.hamcrest.CoreMatchers.instanceOf

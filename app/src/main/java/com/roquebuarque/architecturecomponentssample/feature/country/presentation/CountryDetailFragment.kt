@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui.countrydetail
+package com.roquebuarque.architecturecomponentssample.feature.country.presentation
 
 import android.net.Uri
 import android.os.Bundle
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.roquebuarque.architecturecomponentssample.R
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_country_detail.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi

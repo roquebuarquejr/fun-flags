@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.Flow
 fun TextView.doAfterTextChangedFlow(): Flow<String> {
     return MutableLiveData<String>().also { data ->
         doAfterTextChanged {
-            data.postValue(it.toString())
+            if (this.hasFocus())
+                data.postValue(it.toString())
         }
     }.asFlow()
 

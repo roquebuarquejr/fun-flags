@@ -1,6 +1,5 @@
-package com.roquebuarque.architecturecomponentssample.data.remote
+package com.roquebuarque.architecturecomponentssample.base
 
-import com.roquebuarque.architecturecomponentssample.base.BaseState
 import retrofit2.Response
 import timber.log.Timber
 

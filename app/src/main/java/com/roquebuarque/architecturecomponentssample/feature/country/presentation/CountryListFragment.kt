@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui.countries
+package com.roquebuarque.architecturecomponentssample.feature.country.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.roquebuarque.architecturecomponentssample.R
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
-import com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
 import com.roquebuarque.architecturecomponentssample.utils.doAfterTextChangedFlow
 import com.roquebuarque.architecturecomponentssample.utils.hideKeyboard
 import com.roquebuarque.architecturecomponentssample.utils.setOnClickListenerFlow
@@ -68,9 +67,13 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
                 is CountryListState.Message -> showMessage(state)
                 is CountryListState.Success -> displayList(state)
                 CountryListState.ClearSearch -> clearSearch()
-                is CountryListState.SearchMode -> imgCleanSearchCountryList.isVisible = true
+                is CountryListState.SearchMode -> enableSearchMode()
             }
         }
+    }
+
+    private fun enableSearchMode() {
+        imgCleanSearchCountryList.isVisible = true
     }
 
     private fun displayList(state: CountryListState.Success) {

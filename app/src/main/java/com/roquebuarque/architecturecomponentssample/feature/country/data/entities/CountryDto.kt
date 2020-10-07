@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.data.entities
+package com.roquebuarque.architecturecomponentssample.feature.country.data.entities
 
 import android.os.Parcelable
 import androidx.annotation.Keep

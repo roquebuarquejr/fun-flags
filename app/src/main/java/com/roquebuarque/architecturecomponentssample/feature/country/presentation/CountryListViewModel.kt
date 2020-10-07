@@ -1,4 +1,4 @@
-package com.roquebuarque.architecturecomponentssample.ui.countries
+package com.roquebuarque.architecturecomponentssample.feature.country.presentation
 
 import android.os.Parcelable
 import androidx.hilt.Assisted
@@ -7,12 +7,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.roquebuarque.architecturecomponentssample.base.BaseState
-import com.roquebuarque.architecturecomponentssample.base.BaseState.Status.ERROR
-import com.roquebuarque.architecturecomponentssample.base.BaseState.Status.SUCCESS
 import com.roquebuarque.architecturecomponentssample.base.StateViewModel
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
-import com.roquebuarque.architecturecomponentssample.data.repository.CountryRepository
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.repository.CountryRepository
+import com.roquebuarque.architecturecomponentssample.feature.country.domain.CountryListMapper
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,6 +25,7 @@ import kotlinx.coroutines.launch
 @FragmentScoped
 class CountryListViewModel @ViewModelInject constructor(
     private val repository: CountryRepository,
+    private val mapper: CountryListMapper,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : StateViewModel<CountryListState>() {
 
@@ -66,7 +65,7 @@ class CountryListViewModel @ViewModelInject constructor(
                 .getCountryByName(name)
                 .asFlow()
                 .onStart { emit(CountryListState.SearchMode) }
-                .collect { emit(CountryListMapper(it)) }
+                .collect { emit(mapper.invoke(it)) }
 
         }.asFlow()
     }
@@ -79,7 +78,7 @@ class CountryListViewModel @ViewModelInject constructor(
                 .asFlow()
                 .onStart { emit(CountryListState.Loading(true)) }
                 .collect {
-                    emit(CountryListMapper(it))
+                    emit(mapper.invoke(it))
                     emit(CountryListState.Loading(false))
 
                     if (shouldClearSearch)
@@ -118,25 +117,6 @@ sealed class CountryListIntent {
      */
     object CleanSearch : CountryListIntent()
 
-
-}
-
-/**
- * Convert [BaseState] to [CountryListState]
- */
-object CountryListMapper {
-
-    operator fun invoke(baseState: BaseState<List<CountryDto>>): CountryListState =
-        when (baseState.status) {
-            SUCCESS -> {
-                if (baseState.data != null && baseState.data.isNotEmpty()) {
-                    CountryListState.Success(baseState.data)
-                } else {
-                    CountryListState.Empty
-                }
-            }
-            ERROR -> CountryListState.Message(baseState.message ?: "Something went wrong")
-        }
 
 }
 

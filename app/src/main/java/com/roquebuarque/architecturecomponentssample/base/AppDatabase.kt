@@ -1,10 +1,11 @@
-package com.roquebuarque.architecturecomponentssample.data.local
+package com.roquebuarque.architecturecomponentssample.base
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.entities.CountryDto
+import com.roquebuarque.architecturecomponentssample.feature.country.data.local.CountryDao
 
 @Database(entities = [CountryDto::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

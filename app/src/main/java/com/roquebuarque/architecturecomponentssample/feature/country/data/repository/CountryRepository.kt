@@ -1,10 +1,10 @@
-package com.roquebuarque.architecturecomponentssample.data.repository
+package com.roquebuarque.architecturecomponentssample.feature.country.data.repository
 
 import androidx.lifecycle.map
 import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.base.performNetworkRequest
-import com.roquebuarque.architecturecomponentssample.data.local.CountryDao
-import com.roquebuarque.architecturecomponentssample.data.remote.CountryRemoteDataSource
+import com.roquebuarque.architecturecomponentssample.feature.country.data.local.CountryDao
+import com.roquebuarque.architecturecomponentssample.feature.country.data.remote.CountryRemoteDataSource
 import javax.inject.Inject
 import javax.inject.Singleton
 
