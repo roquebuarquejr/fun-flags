@@ -8,6 +8,17 @@ The project is consuming the https://restcountries.eu/ free api and contain the 
 * Search country by name
 * Show contry details
 
+
+## Screenshots
+<p float="left">
+<img src=".github/device-2020-10-07-131019.png" width="20%" height="20%"/>
+<img src=".github/device-2020-10-07-131047.png" width="20%" height="20%"/>
+<img src=".github/device-2020-10-07-131103.png" width="20%" height="20%"/>
+</p>
+
+
+
+
 ## Libraries
 * Hilt
 * Retrofit
