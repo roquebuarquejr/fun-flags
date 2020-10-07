@@ -14,7 +14,6 @@ fun <T, A> performNetworkRequest(
 ): LiveData<BaseState<T>> =
 
     liveData(Dispatchers.IO) {
-        emit(BaseState.loading())
         val source = databaseQuery().map { BaseState.success(it) }
         emitSource(source)
 

@@ -8,4 +8,5 @@
     <string name="region">Region: %1$s</string>
     <string name="sub_region">Sub Region: %1$s</string>
     <string name="population">Population: %1$s</string>
+    <string name="empty">Nothing was found</string>
 </resources>

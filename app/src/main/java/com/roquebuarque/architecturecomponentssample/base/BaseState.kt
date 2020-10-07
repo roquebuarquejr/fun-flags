@@ -9,8 +9,7 @@ data class BaseState<out T>(val status: Status, val data: @RawValue T?, val mess
 
     enum class Status {
         SUCCESS,
-        ERROR,
-        LOADING
+        ERROR
     }
 
     companion object {
@@ -20,10 +19,6 @@ data class BaseState<out T>(val status: Status, val data: @RawValue T?, val mess
 
         fun <T> error(message: String, data: T? = null): BaseState<T> {
             return BaseState(Status.ERROR, data, message)
-        }
-
-        fun <T> loading(data: T? = null): BaseState<T> {
-            return BaseState(Status.LOADING, data, null)
         }
     }
 }

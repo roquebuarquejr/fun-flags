@@ -47,6 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:maxLines="1"
                     android:drawableStart="@drawable/ic_search"
                     android:drawablePadding="@dimen/size_2"
                     android:hint="@string/search_country"
@@ -77,6 +78,17 @@
                     android:layout_below="@+id/edtSearchCountry"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtSearchCountry" />
+
+                <TextView
+                    android:id="@+id/txtEmptyCountryList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/empty"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/size_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/edtSearchCountry" />

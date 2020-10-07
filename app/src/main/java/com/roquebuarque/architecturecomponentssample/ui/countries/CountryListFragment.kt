@@ -2,15 +2,17 @@ package com.roquebuarque.architecturecomponentssample.ui.countries
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.roquebuarque.architecturecomponentssample.R
-import com.roquebuarque.architecturecomponentssample.base.BaseState
 import com.roquebuarque.architecturecomponentssample.data.entities.CountryDto
 import com.roquebuarque.architecturecomponentssample.ui.countrydetail.CountryDetailFragment
 import com.roquebuarque.architecturecomponentssample.utils.doAfterTextChangedFlow
+import com.roquebuarque.architecturecomponentssample.utils.hideKeyboard
 import com.roquebuarque.architecturecomponentssample.utils.setOnClickListenerFlow
 import com.roquebuarque.architecturecomponentssample.utils.setOnRefreshListenerFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +22,6 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
-import timber.log.Timber
 
 @ExperimentalCoroutinesApi
 @FlowPreview
@@ -61,20 +62,37 @@ class CountryListFragment : Fragment(R.layout.fragment_country_list) {
 
     private fun setupObserver() {
         viewModel.state.observe(this) { state ->
-            when (state.status) {
-                BaseState.Status.SUCCESS -> {
-                    load(false)
-                    adapter.submitList(state.data)
-                }
-                BaseState.Status.ERROR -> {
-                    load(false)
-                    Timber.d(state.message)
-                }
-                BaseState.Status.LOADING -> {
-                    load(true)
-                }
+            when (state) {
+                is CountryListState.Loading -> load(state.isLoading)
+                CountryListState.Empty -> showEmptyState()
+                is CountryListState.Message -> showMessage(state)
+                is CountryListState.Success -> displayList(state)
+                CountryListState.ClearSearch -> clearSearch()
+                is CountryListState.SearchMode -> imgCleanSearchCountryList.isVisible = true
             }
         }
+    }
+
+    private fun displayList(state: CountryListState.Success) {
+        rvCountries.isVisible = true
+        txtEmptyCountryList.isVisible = false
+        adapter.submitList(state.data)
+    }
+
+    private fun clearSearch() {
+        hideKeyboard()
+        edtSearchCountry.clearFocus()
+        edtSearchCountry.setText("")
+        imgCleanSearchCountryList.isVisible = false
+    }
+
+    private fun showMessage(message: CountryListState.Message){
+        Toast.makeText(activity, message.text, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showEmptyState() {
+        rvCountries.isVisible = false
+        txtEmptyCountryList.isVisible = true
     }
 
     private fun load(isRefresh: Boolean) {
