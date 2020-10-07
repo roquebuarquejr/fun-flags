@@ -28,7 +28,9 @@ The project is consuming the https://restcountries.eu/ free api and contain the 
 * Coroutines
 * Navigation
 * Live data
-
+* Espresso
+* Mockito
+* JUnit
 
 ### References
 https://developer.android.com/topic/libraries/architecture
