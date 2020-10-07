@@ -43,6 +43,14 @@ class CountryListViewModel @ViewModelInject constructor(
         }
     }
 
+    fun intent(intent: Flow<CountryListIntent>) {
+        viewModelScope.launch {
+            intent.collect {
+                actionBroadcastChannel.send(it)
+            }
+        }
+    }
+
     private val actions = actionBroadcastChannel
         .asFlow()
         .flatMapLatest {
@@ -97,6 +105,7 @@ sealed class CountryListIntent {
      * When edit text string is empty
      */
     object CleanSearch : CountryListIntent()
+
 
 }
 
